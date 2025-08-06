@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'wouter';
+import { Home } from 'lucide-react';
 import Sidebar from '../components/Sidebar';
 
 const Dashboard = () => {
@@ -33,12 +35,22 @@ const Dashboard = () => {
       <Sidebar />
       
       <main className="flex-1 p-8">
-        {/* Welcome Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2" data-testid="text-welcome">
-            Welcome back, Student
-          </h1>
-          <p className="text-gray-600 dark:text-gray-300">Continue your placement preparation journey</p>
+        {/* Top Header with Home Button */}
+        <div className="flex justify-between items-center mb-8">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2" data-testid="text-welcome">
+              Welcome back, Student
+            </h1>
+            <p className="text-gray-600 dark:text-gray-300">Continue your placement preparation journey</p>
+          </div>
+          <Link 
+            href="/" 
+            className="flex items-center space-x-2 bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium"
+            data-testid="button-home"
+          >
+            <Home className="h-4 w-4" />
+            <span>Home</span>
+          </Link>
         </div>
 
         {/* Overall Progress Section */}

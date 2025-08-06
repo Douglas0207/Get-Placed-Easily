@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useLocation } from 'wouter';
 import { GraduationCap, Eye, EyeOff } from 'lucide-react';
+import { useAuth } from '../contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 
 const Login = () => {
   const [, setLocation] = useLocation();
+  const { login } = useAuth();
   const [formData, setFormData] = useState({
     username: '',
     password: ''
@@ -28,7 +30,8 @@ const Login = () => {
     
     // Simple validation for testing - TODO: Connect to real authentication system
     if (formData.username === 'admin' && formData.password === 'admin123') {
-      // Successful login - redirect to dashboard
+      // Successful login - set auth state and redirect to dashboard
+      login();
       setLocation('/dashboard');
     } else {
       setError('Invalid username or password. Try admin/admin123');

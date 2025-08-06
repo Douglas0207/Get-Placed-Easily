@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link, useLocation } from 'wouter';
-import { GraduationCap } from 'lucide-react';
+import { GraduationCap, LogOut } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
+import { useAuth } from '../contexts/AuthContext';
 
 const Navigation = () => {
   const [location] = useLocation();
+  const { isLoggedIn, logout } = useAuth();
 
   const navItems = [
     { path: '/', label: 'Home' },
@@ -55,13 +57,33 @@ const Navigation = () => {
         <div className="flex items-center space-x-4">
           <ThemeToggle />
           
-          <Link 
-            href="/login"
-            className="bg-primary text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium"
-            data-testid="button-login"
-          >
-            Login
-          </Link>
+          {isLoggedIn ? (
+            <>
+              <Link 
+                href="/dashboard"
+                className="bg-primary text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                data-testid="button-dashboard"
+              >
+                Dashboard
+              </Link>
+              <button
+                onClick={logout}
+                className="flex items-center space-x-2 text-gray-600 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 px-4 py-2 rounded-lg transition-colors font-medium"
+                data-testid="button-logout-nav"
+              >
+                <LogOut className="h-4 w-4" />
+                <span>Logout</span>
+              </button>
+            </>
+          ) : (
+            <Link 
+              href="/login"
+              className="bg-primary text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium"
+              data-testid="button-login"
+            >
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </nav>

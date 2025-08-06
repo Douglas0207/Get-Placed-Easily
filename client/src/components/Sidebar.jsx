@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'wouter';
+import { useAuth } from '../contexts/AuthContext';
 import { 
   Home, 
   BookOpen, 
@@ -17,6 +18,7 @@ import {
 const Sidebar = ({ brandName = "GPE" }) => {
   const [location] = useLocation();
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
+  const { logout } = useAuth();
 
   const sidebarItems = [
     { path: '/dashboard', label: 'Dashboard', icon: Home },
@@ -89,7 +91,8 @@ const Sidebar = ({ brandName = "GPE" }) => {
             <div className="flex space-x-3">
               <button
                 onClick={() => {
-                  // TODO: Add proper logout logic - clear session, redirect to home
+                  logout();
+                  setShowLogoutConfirm(false);
                   window.location.href = '/';
                 }}
                 className="flex-1 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg font-medium transition-colors"
