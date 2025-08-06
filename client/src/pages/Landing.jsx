@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'wouter';
-import { CheckCircle, MessageCircle, TrendingUp } from 'lucide-react';
+import { CheckCircle, MessageCircle, TrendingUp, GraduationCap } from 'lucide-react';
 import Navigation from '../components/Navigation';
 
 const Landing = () => {
@@ -11,14 +11,29 @@ const Landing = () => {
       description: 'Practice with realistic mock tests that simulate the actual placement environment.'
     },
     {
-      icon: MessageCircle,
-      title: 'Personalized Feedback',
-      description: 'Receive detailed feedback on your performance, highlighting areas for improvement.'
-    },
-    {
       icon: TrendingUp,
       title: 'Progress Tracking',
       description: 'Monitor your progress over time with visual indicators and performance reports.'
+    },
+    {
+      icon: MessageCircle,
+      title: 'Interview Preparation',
+      description: 'Prepare for technical and HR interviews with comprehensive question banks.'
+    },
+    {
+      icon: CheckCircle,
+      title: 'Soft Skills Training',
+      description: 'Improve your communication and presentation skills for better placement outcomes.'
+    },
+    {
+      icon: TrendingUp,
+      title: 'Resume Builder',
+      description: 'Create professional resumes with AI-powered suggestions and templates.'
+    },
+    {
+      icon: MessageCircle,
+      title: 'Mini Badges for Competition',
+      description: 'Earn certifications and compete with peers through coding challenges.'
     }
   ];
 
@@ -41,20 +56,13 @@ const Landing = () => {
                 Your AI-powered platform for placement preparation. Get personalized guidance, practice with real tests, and track your progress.
               </p>
               
-              <div className="flex justify-center space-x-4">
+              <div className="flex justify-center">
                 <Link 
-                  href="/dashboard"
+                  href="/login"
                   className="bg-primary text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors"
                   data-testid="button-hero-get-started"
                 >
                   Get Started
-                </Link>
-                <Link 
-                  href="/dashboard"
-                  className="bg-white text-primary border border-primary px-8 py-4 rounded-lg text-lg font-semibold hover:bg-primary hover:text-white transition-colors"
-                  data-testid="button-hero-try-demo"
-                >
-                  Try Demo
                 </Link>
               </div>
             </div>
@@ -73,7 +81,7 @@ const Landing = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature, index) => {
               const Icon = feature.icon;
               return (
@@ -89,6 +97,65 @@ const Landing = () => {
           </div>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 dark:bg-gray-950 text-white py-12 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-4 gap-8">
+            <div className="col-span-2 md:col-span-1">
+              <div className="flex items-center space-x-2 mb-4">
+                <GraduationCap className="h-8 w-8 text-primary" />
+                <span className="text-xl font-bold">GPE</span>
+              </div>
+              <p className="text-gray-300 text-sm">
+                Your AI-powered platform for placement preparation. Get personalized guidance, practice with real tests, and track your progress.
+              </p>
+            </div>
+            
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Features</h3>
+              <ul className="space-y-2 text-sm text-gray-300">
+                <li>Mock Tests</li>
+                <li>Interview Preparation</li>
+                <li>Resume Builder</li>
+                <li>Progress Tracking</li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Company</h3>
+              <ul className="space-y-2 text-sm text-gray-300">
+                <li>About Us</li>
+                <li>Contact</li>
+                <li>Privacy Policy</li>
+                <li>Terms of Service</li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Support</h3>
+              <ul className="space-y-2 text-sm text-gray-300">
+                <li>Help Center</li>
+                <li>Documentation</li>
+                <li>Community</li>
+                <li>Contact Support</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div className="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+            <p className="text-sm text-gray-400">
+              © 2024 Get Placed Easily (GPE). All rights reserved.
+            </p>
+            <div className="flex space-x-4 mt-4 md:mt-0">
+              <span className="text-sm text-gray-400">Follow us:</span>
+              <span className="text-sm text-gray-400">Twitter</span>
+              <span className="text-sm text-gray-400">LinkedIn</span>
+              <span className="text-sm text-gray-400">Facebook</span>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };

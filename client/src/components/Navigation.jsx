@@ -8,9 +8,7 @@ const Navigation = () => {
 
   const navItems = [
     { path: '/', label: 'Home' },
-    { path: '/dashboard', label: 'Features' },
-    { path: '/pricing', label: 'Pricing' },
-    { path: '/resources', label: 'Resources' }
+    { path: '/about', label: 'About' }
   ];
 
   return (
@@ -42,18 +40,11 @@ const Navigation = () => {
           <ThemeToggle />
           
           <Link 
-            href="/dashboard"
+            href="/login"
             className="bg-primary text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium"
-            data-testid="button-get-started"
+            data-testid="button-login"
           >
-            Get Started
-          </Link>
-          <Link 
-            href="/dashboard"
-            className="border border-primary text-primary px-6 py-2 rounded-lg hover:bg-primary hover:text-white transition-colors font-medium"
-            data-testid="button-try-demo"
-          >
-            Try Demo
+            Login
           </Link>
         </div>
       </div>
