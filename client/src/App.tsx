@@ -1,0 +1,50 @@
+import { Switch, Route } from "wouter";
+import { queryClient } from "./lib/queryClient";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { Toaster } from "@/components/ui/toaster";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { ThemeProvider } from "./contexts/ThemeContext";
+
+// Import pages
+import Landing from "./pages/Landing";
+import Dashboard from "./pages/Dashboard";
+import TestGenerator from "./pages/TestGenerator";
+import ResumeBuilder from "./pages/ResumeBuilder";
+import InterviewPrep from "./pages/InterviewPrep";
+import SpokenEnglish from "./pages/SpokenEnglish";
+import ProgressTracker from "./pages/ProgressTracker";
+import Certifications from "./pages/Certifications";
+import NotFound from "@/pages/not-found";
+
+function Router() {
+  return (
+    <Switch>
+      <Route path="/" component={Landing} />
+      <Route path="/dashboard" component={Dashboard} />
+      <Route path="/practice" component={Dashboard} />
+      <Route path="/tests" component={TestGenerator} />
+      <Route path="/resume-builder" component={ResumeBuilder} />
+      <Route path="/interview-prep" component={InterviewPrep} />
+      <Route path="/spoken-english" component={SpokenEnglish} />
+      <Route path="/progress" component={ProgressTracker} />
+      <Route path="/certifications" component={Certifications} />
+      {/* Fallback to 404 */}
+      <Route component={NotFound} />
+    </Switch>
+  );
+}
+
+function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <ThemeProvider>
+          <Toaster />
+          <Router />
+        </ThemeProvider>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+}
+
+export default App;
