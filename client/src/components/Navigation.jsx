@@ -8,6 +8,7 @@ const Navigation = () => {
 
   const navItems = [
     { path: '/', label: 'Home' },
+    { path: '#features', label: 'Features', isAnchor: true },
     { path: '/about', label: 'About' }
   ];
 
@@ -19,21 +20,36 @@ const Navigation = () => {
           <span className="text-xl font-bold text-gray-900 dark:text-white">GPE</span>
         </Link>
         
-        <div className="hidden md:flex items-center space-x-8">
-          {navItems.map(item => (
-            <Link 
-              key={item.path}
-              href={item.path}
-              className={`transition-colors ${
-                location === item.path 
-                  ? 'text-primary font-medium' 
-                  : 'text-gray-600 dark:text-gray-300 hover:text-primary'
-              }`}
-              data-testid={`link-nav-${item.label.toLowerCase()}`}
-            >
-              {item.label}
-            </Link>
-          ))}
+        <div className="flex items-center space-x-8">
+          {navItems.map(item => {
+            if (item.isAnchor) {
+              return (
+                <a
+                  key={item.path}
+                  href={item.path}
+                  className="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors"
+                  data-testid={`link-nav-${item.label.toLowerCase()}`}
+                >
+                  {item.label}
+                </a>
+              );
+            }
+            
+            return (
+              <Link 
+                key={item.path}
+                href={item.path}
+                className={`transition-colors ${
+                  location === item.path 
+                    ? 'text-primary font-medium' 
+                    : 'text-gray-600 dark:text-gray-300 hover:text-primary'
+                }`}
+                data-testid={`link-nav-${item.label.toLowerCase()}`}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </div>
         
         <div className="flex items-center space-x-4">

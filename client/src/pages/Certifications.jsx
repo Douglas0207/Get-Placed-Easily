@@ -1,133 +1,203 @@
 import React from 'react';
-import { Medal, Crown, Gem } from 'lucide-react';
+import Sidebar from '../components/Sidebar';
+import { Medal, Crown, Gem, Award, Star } from 'lucide-react';
 
 const Certifications = () => {
   // TODO: Connect to backend for actual certification data and progress
   const certifications = [
+    // DSA Mastery Certifications
     {
-      name: 'Bronze LeetCode',
-      requirement: '25 Problems',
+      name: 'Bronze DSA',
+      requirement: '25 DSA Problems',
       status: 'Completed',
       icon: Medal,
       color: 'bg-orange-500',
-      completed: true
+      completed: true,
+      category: 'DSA Mastery'
     },
     {
-      name: 'Silver LeetCode',
-      requirement: '50 Problems',
+      name: 'Silver DSA',
+      requirement: '50 DSA Problems',
       status: 'Completed',
       icon: Medal,
       color: 'bg-gray-500',
-      completed: true
+      completed: true,
+      category: 'DSA Mastery'
     },
     {
-      name: 'Gold LeetCode',
-      requirement: '100 Problems',
-      status: 'Completed',
+      name: 'Gold DSA',
+      requirement: '100 DSA Problems',
+      status: 'In Progress',
       icon: Medal,
       color: 'bg-yellow-500',
-      completed: true
+      completed: false,
+      category: 'DSA Mastery'
     },
     {
-      name: 'Platinum LeetCode',
-      requirement: '150 Problems',
-      status: 'Completed',
+      name: 'Platinum DSA',
+      requirement: '150 DSA Problems',
+      status: 'Locked',
       icon: Medal,
       color: 'bg-gray-400',
-      completed: true
+      completed: false,
+      category: 'DSA Mastery'
     },
     {
-      name: 'Diamond LeetCode',
-      requirement: '200 Problems',
-      status: 'Completed',
+      name: 'Diamond DSA',
+      requirement: '200 DSA Problems',
+      status: 'Locked',
       icon: Gem,
       color: 'bg-blue-400',
-      completed: true
+      completed: false,
+      category: 'DSA Mastery'
     },
     {
-      name: 'Conqueror of LeetCode',
-      requirement: '250+ Problems',
-      status: 'Completed',
+      name: 'DSA Conqueror',
+      requirement: '250+ DSA Problems',
+      status: 'Locked',
       icon: Crown,
       color: 'bg-purple-500',
-      completed: true
+      completed: false,
+      category: 'DSA Mastery'
+    },
+    // Soft Skills Mastery Certifications
+    {
+      name: 'Bronze Soft Skills',
+      requirement: '5 Communication Exercises',
+      status: 'Completed',
+      icon: Star,
+      color: 'bg-orange-500',
+      completed: true,
+      category: 'Soft Skills Mastery'
+    },
+    {
+      name: 'Silver Soft Skills',
+      requirement: '10 Presentation Skills',
+      status: 'In Progress',
+      icon: Star,
+      color: 'bg-gray-500',
+      completed: false,
+      category: 'Soft Skills Mastery'
+    },
+    {
+      name: 'Gold Soft Skills',
+      requirement: '15 Leadership Activities',
+      status: 'Locked',
+      icon: Star,
+      color: 'bg-yellow-500',
+      completed: false,
+      category: 'Soft Skills Mastery'
+    },
+    {
+      name: 'Platinum Soft Skills',
+      requirement: '20 Team Collaborations',
+      status: 'Locked',
+      icon: Award,
+      color: 'bg-gray-400',
+      completed: false,
+      category: 'Soft Skills Mastery'
+    },
+    {
+      name: 'Soft Skills Conqueror',
+      requirement: '25+ Complete Modules',
+      status: 'Locked',
+      icon: Crown,
+      color: 'bg-purple-500',
+      completed: false,
+      category: 'Soft Skills Mastery'
+    },
+    // Aptitude Mastery Certifications
+    {
+      name: 'Bronze Aptitude',
+      requirement: '50 Aptitude Questions',
+      status: 'In Progress',
+      icon: Medal,
+      color: 'bg-orange-500',
+      completed: false,
+      category: 'Aptitude Mastery'
+    },
+    {
+      name: 'Silver Aptitude',
+      requirement: '100 Aptitude Questions',
+      status: 'Locked',
+      icon: Medal,
+      color: 'bg-gray-500',
+      completed: false,
+      category: 'Aptitude Mastery'
+    },
+    {
+      name: 'Gold Aptitude',
+      requirement: '200 Aptitude Questions',
+      status: 'Locked',
+      icon: Medal,
+      color: 'bg-yellow-500',
+      completed: false,
+      category: 'Aptitude Mastery'
+    },
+    {
+      name: 'Aptitude Conqueror',
+      requirement: '300+ Questions Mastered',
+      status: 'Locked',
+      icon: Crown,
+      color: 'bg-purple-500',
+      completed: false,
+      category: 'Aptitude Mastery'
     }
   ];
 
+  const groupedCerts = certifications.reduce((acc, cert) => {
+    const category = cert.category || 'General';
+    if (!acc[category]) acc[category] = [];
+    acc[category].push(cert);
+    return acc;
+  }, {});
+
   return (
-    <div className="max-w-6xl mx-auto p-8 bg-gray-50 dark:bg-gray-900 min-h-screen">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Mini-Certifications</h1>
-        <p className="text-gray-600 dark:text-gray-300">
-          Earn certifications by completing coding challenges and assessments
-        </p>
-      </div>
+    <div className="flex min-h-screen bg-gray-50 dark:bg-gray-900">
+      <Sidebar />
+      
+      <main className="flex-1 p-8">
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Mini-Certifications</h1>
+          <p className="text-gray-600 dark:text-gray-300">
+            Earn certifications by completing coding challenges and skill assessments across different domains.
+          </p>
+        </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {certifications.map((cert, index) => {
-          const Icon = cert.icon;
-          
-          return (
-            <div 
-              key={index} 
-              className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 text-center hover:shadow-lg transition-shadow"
-              data-testid={`cert-${cert.name.toLowerCase().replace(/\s+/g, '-')}`}
-            >
-              <div className={`w-16 h-16 ${cert.color} rounded-full mx-auto mb-4 flex items-center justify-center`}>
-                <Icon className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{cert.name}</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">{cert.requirement}</p>
-              <p className={`text-xs font-medium ${
-                cert.completed ? 'text-success' : 'text-gray-500 dark:text-gray-400'
-              }`}>
-                {cert.status}
-              </p>
-              
-              {cert.completed && (
-                <div className="mt-4 w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                  <div className="bg-success h-2 rounded-full w-full"></div>
-                </div>
-              )}
+        {Object.entries(groupedCerts).map(([category, certs]) => (
+          <div key={category} className="mb-12">
+            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">{category}</h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+              {certs.map((cert, index) => {
+                const Icon = cert.icon;
+                
+                return (
+                  <div 
+                    key={index} 
+                    className="bg-white dark:bg-gray-800 rounded-xl p-4 border border-gray-200 dark:border-gray-700 text-center hover:shadow-lg transition-shadow"
+                    data-testid={`cert-${cert.name.toLowerCase().replace(/\s+/g, '-')}`}
+                  >
+                    <div className={`w-12 h-12 ${cert.color} rounded-full mx-auto mb-3 flex items-center justify-center`}>
+                      <Icon className="h-6 w-6 text-white" />
+                    </div>
+                    <h3 className="text-sm font-bold text-gray-900 dark:text-white mb-2">{cert.name}</h3>
+                    <p className="text-xs text-gray-600 dark:text-gray-300 mb-2">{cert.requirement}</p>
+                    <p className={`text-xs font-medium ${
+                      cert.completed 
+                        ? 'text-success' 
+                        : cert.status === 'In Progress'
+                        ? 'text-primary'
+                        : 'text-gray-500 dark:text-gray-400'
+                    }`}>
+                      {cert.status}
+                    </p>
+                  </div>
+                );
+              })}
             </div>
-          );
-        })}
-      </div>
-
-      {/* Achievement Stats */}
-      <div className="mt-12 bg-white dark:bg-gray-800 rounded-2xl p-8 border border-gray-200 dark:border-gray-700">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Achievement Summary</h2>
-        <div className="grid md:grid-cols-3 gap-6">
-          <div className="text-center">
-            <div className="text-3xl font-bold text-primary mb-2" data-testid="stat-total-certs">6</div>
-            <p className="text-sm text-gray-600 dark:text-gray-300">Total Certifications</p>
           </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-success mb-2" data-testid="stat-completed-certs">6</div>
-            <p className="text-sm text-gray-600 dark:text-gray-300">Completed</p>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-accent mb-2" data-testid="stat-completion-rate">100%</div>
-            <p className="text-sm text-gray-600 dark:text-gray-300">Completion Rate</p>
-          </div>
-        </div>
-      </div>
-
-      {/* Next Goals */}
-      <div className="mt-8 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900 dark:to-purple-900 rounded-2xl p-8">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">What's Next?</h2>
-        <p className="text-gray-700 dark:text-gray-300 mb-4">
-          Congratulations on completing all available certifications! Stay tuned for more challenging certification programs.
-        </p>
-        <div className="flex space-x-4">
-          <button className="bg-primary text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors" data-testid="button-explore-more">
-            Explore More Challenges
-          </button>
-          <button className="border border-primary text-primary px-6 py-3 rounded-lg hover:bg-primary hover:text-white transition-colors" data-testid="button-share-achievements">
-            Share Achievements
-          </button>
-        </div>
-      </div>
+        ))}
+      </main>
     </div>
   );
 };
